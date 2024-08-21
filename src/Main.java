@@ -35,5 +35,6 @@ public class Main {
 
         printArray(nums);
         System.out.println(numIsDupe(nums, 2));
+        System.out.println("Duplicate check is complete.")
     }
 }
