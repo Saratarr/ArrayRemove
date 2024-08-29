@@ -24,6 +24,15 @@ public class Main {
         return trackNum;
     }
 
+    public static boolean arrayContains(int[] arr, int val) {
+        for (int i : arr) {
+            if (i == val) {
+            return true;
+            }
+        }
+        return false;
+    }
+
     public static int lastIndex(int[] arr, int val) { // Identify last index position of value
         int len = arr.length;
 
@@ -35,25 +44,31 @@ public class Main {
         return -1;
     }
 
-    public static int[] removedDupes(int[] arr) {
-        List<Integer> rDupes = new ArrayList<>();
-        // Iterate through rDupes 1 instance of every value in arr
-        for (int i : arr) {
-            // 
+    public static int[] arrayAppend(int[] arr, int val) {
+        int[] newArray = new int[arr.length + 1];
+        for (int i = 0; i < arr.length; i++) {
+            newArray[i] = arr[i];
         }
+        newArray[newArray.length - 1] = val;
+        return newArray;
+    }
 
-        int[] array = new int[rDupes.size()];
-        for (int i = 0; i < rDupes.size(); i++) {
-            array[i] = rDupes.get(i);
+    public static int[] removedDupes(int[] arr) {
+        int[] rDupes = new int[0];
+        for (int i : arr) {
+            if (!arrayContains(rDupes, i)) {
+                rDupes = arrayAppend(rDupes, i);
+            }
         }
-        return array;
+        return rDupes;
     }
 
     public static void main(String[] args) {
         int[] nums = {1, 2, 3, 1, 2, 3, 4};
 
         printArray(nums);
-        System.out.println("The given value is a duplicate? " + numIsDupe(nums, 4));
-        System.out.println("The index position of the last duplicate is " + lastIndex(nums, 4));
+        // System.out.println("The given value is a duplicate? " + numIsDupe(nums, 1));
+        // System.out.println("The index position of the last duplicate is " + lastIndex(nums, 1));
+        printArray(removedDupes(nums));
     }
 }
